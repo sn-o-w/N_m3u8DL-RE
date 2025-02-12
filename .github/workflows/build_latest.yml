@@ -50,13 +50,13 @@ jobs:
     needs: set-date
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
       - name: Install zip
         run: choco install zip --no-progress --yes
 
       - name: Set up dotnet
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_SDK_VERSION }}
 
@@ -71,7 +71,7 @@ jobs:
           zip ../N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_win-NT6.0-x86_${{ needs.set-date.outputs.date }}.zip N_m3u8DL-RE.exe
 
       - name: Upload Artifact[win-x86]
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v4
         with:
           name: win-NT6.0-x86
           path: N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_win-NT6.0-x86_${{ needs.set-date.outputs.date }}.zip
@@ -81,13 +81,13 @@ jobs:
     needs: set-date
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
       - name: Install zip
         run: choco install zip --no-progress --yes
 
       - name: Set up dotnet
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_SDK_VERSION }}
 
@@ -102,13 +102,13 @@ jobs:
           zip ../N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_win-arm64_${{ needs.set-date.outputs.date }}.zip N_m3u8DL-RE.exe
 
       - name: Upload Artifact [win-x64]
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v4
         with:
           name: win-x64
           path: N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_win-x64_${{ needs.set-date.outputs.date }}.zip
 
       - name: Upload Artifact [win-arm64]
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v4
         with:
           name: win-arm64
           path: N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_win-arm64_${{ needs.set-date.outputs.date }}.zip
@@ -131,9 +131,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y curl wget libicu-dev libcurl4-openssl-dev zlib1g-dev libkrb5-dev clang llvm binutils-aarch64-linux-gnu gcc-aarch64-linux-gnu zlib1g-dev:arm64
       
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Set up dotnet
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_SDK_VERSION }}
       
@@ -148,13 +148,13 @@ jobs:
           tar -czvf ../N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_linux-arm64_${{ needs.set-date.outputs.date }}.tar.gz N_m3u8DL-RE
 
       - name: Upload Artifact [linux-x64]
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v4
         with:
           name: linux-x64
           path: N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_linux-x64_${{ needs.set-date.outputs.date }}.tar.gz
 
       - name: Upload Artifact[linux-arm64]
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v4
         with:
           name: linux-arm64
           path: N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_linux-arm64_${{ needs.set-date.outputs.date }}.tar.gz
@@ -164,7 +164,7 @@ jobs:
     needs: set-date
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
       - name: Set up NDK
         shell: pwsh
@@ -178,7 +178,7 @@ jobs:
           echo $ndkBinPath | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
 
       - name: Set up dotnet
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_SDK_VERSION }}
       
@@ -193,13 +193,13 @@ jobs:
           tar -czvf ../N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_android-bionic-arm64_${{ needs.set-date.outputs.date }}.tar.gz N_m3u8DL-RE
 
       - name: Upload Artifact [linux-bionic-x64]
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v4
         with:
           name: android-bionic-x64
           path: N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_android-bionic-x64_${{ needs.set-date.outputs.date }}.tar.gz
 
       - name: Upload Artifact[linux-bionic-arm64]
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v4
         with:
           name: android-bionic-arm64
           path: N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_android-bionic-arm64_${{ needs.set-date.outputs.date }}.tar.gz
@@ -210,7 +210,7 @@ jobs:
     container: mcr.microsoft.com/dotnet/sdk:9.0-alpine-amd64
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
       - run: apk add clang build-base zlib-dev
       - run: dotnet publish src/N_m3u8DL-RE -r linux-musl-x64 -c Release -o artifact -p:InvariantGlobalization=true
@@ -221,7 +221,7 @@ jobs:
           tar -czvf ../N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_linux-musl-x64_${{ needs.set-date.outputs.date }}.tar.gz N_m3u8DL-RE
 
       - name: Upload Artifact [linux-musl-x64]
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v4
         with:
           name: linux-musl-x64
           path: N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_linux-musl-x64_${{ needs.set-date.outputs.date }}.tar.gz
@@ -232,10 +232,10 @@ jobs:
     container: mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-cross-arm64-alpine
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
       - name: Set up dotnet
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_SDK_VERSION }}
 
@@ -249,7 +249,7 @@ jobs:
           tar -czvf ../N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_linux-musl-arm64_${{ needs.set-date.outputs.date }}.tar.gz N_m3u8DL-RE
 
       - name: Upload Artifact [linux-musl-arm64]
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v4
         with:
           name: linux-musl-arm64
           path: N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_linux-musl-arm64_${{ needs.set-date.outputs.date }}.tar.gz
@@ -259,10 +259,10 @@ jobs:
     needs: set-date
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
       - name: Set up dotnet
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_SDK_VERSION }}
       - run: dotnet publish src/N_m3u8DL-RE -r osx-arm64 -c Release -o artifact-arm64 
@@ -276,13 +276,13 @@ jobs:
           tar -czvf ../N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_osx-arm64_${{ needs.set-date.outputs.date }}.tar.gz N_m3u8DL-RE
 
       - name: Upload Artifact [osx-x64]
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v4
         with:
           name: osx-x64
           path: N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_osx-x64_${{ needs.set-date.outputs.date }}.tar.gz
 
       - name: Upload Artifact[osx-arm64]
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v4
         with:
           name: osx-arm64
           path: N_m3u8DL-RE_${{ needs.set-date.outputs.tag }}_osx-arm64_${{ needs.set-date.outputs.date }}.tar.gz
@@ -297,7 +297,7 @@ jobs:
     
     steps:
       - name: Fetch artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
 
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
